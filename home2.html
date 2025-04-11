@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miyanda's Fashion & Tech</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: white;
+      --text-color: #333;
+      --highlight-color: skyblue;
+    }
+    body.dark {
+      --bg-color: #1e1e1e;
+      --text-color: white;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: 0.5s ease;
+    }
+    header {
+      background-color: var(--highlight-color);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 2em;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    nav {
+      background-color: #eee;
+      text-align: center;
+      padding: 10px;
+    }
+    nav select {
+      padding: 10px;
+      font-size: 1em;
+      border: 2px solid var(--highlight-color);
+      border-radius: 5px;
+    }
+    .toggle-theme {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 10px;
+      background: var(--highlight-color);
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .profile {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .profile img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--highlight-color);
+      background: transparent;
+    }
+    .search-bar {
+      text-align: center;
+      margin: 20px;
+    }
+    .search-bar input {
+      padding: 10px;
+      width: 60%;
+      border: 2px solid var(--highlight-color);
+      border-radius: 5px;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 20px;
+    }
+    .product {
+      border: 2px solid var(--highlight-color);
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+      background: #fff8ff;
+    }
+    body.dark .product {
+      background: #2a2a2a;
+    }
+    .product a {
+      display: block;
+      text-decoration: none;
+    }
+    .product img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      cursor: pointer;
+    }
+    .price {
+      font-weight: bold;
+      color: green;
+      padding: 10px;
+    }
+    .news-ticker {
+      background-color: var(--highlight-color);
+      color: white;
+      padding: 10px;
+      overflow: hidden;
+      white-space: nowrap;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+    }
+    .news-ticker span {
+      display: inline-block;
+      animation: ticker 20s linear infinite;
+    }
+    @keyframes ticker {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    .contact, .map, .social, .about {
+      text-align: center;
+      margin: 20px;
+    }
+    .social-icons a {
+      margin: 0 10px;
+      color: var(--highlight-color);
+      font-size: 1.5em;
+      text-decoration: none;
+    }
+    .glitter {
+      background-image: url('https://www.transparenttextures.com/patterns/glitter.png');
+    }
+    footer {
+      background-color: var(--highlight-color);
+      text-align: center;
+      color: white;
+      padding: 15px;
+    }
+    .extra-contact {
+      margin: 30px;
+      text-align: center;
+    }
+    .extra-contact button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      color: white;
+      background-color: var(--highlight-color);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .payment-section {
+      text-align: center;
+      margin: 40px;
+    }
+    .payment-section textarea {
+      width: 80%;
+      height: 100px;
+      margin: 10px auto;
+      display: block;
+      border: 2px solid var(--highlight-color);
+      border-radius: 5px;
+      padding: 10px;
+    }
+    .payment-section button {
+      background-color: var(--highlight-color);
+      color: white;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .call-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--highlight-color);
+      color: white;
+      padding: 15px 18px;
+      border-radius: 50%;
+      font-size: 1.5em;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      text-decoration: none;
+      z-index: 1000;
+    }
+    .call-button:hover::after {
+      content: ' Call Miyanda';
+      position: absolute;
+      right: 70px;
+      background-color: var(--highlight-color);
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: white;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body class="glitter">
+
+<header>Miyanda's Fashion & Tech</header>
+
+<nav>
+  <select onchange="navigate(this)">
+    <option value="">Navigate to...</option>
+    <option value="about">About</option>
+    <option value="bio">Bio</option>
+    <option value="policy">Policy</option>
+  </select>
+</nav>
+
+<button class="toggle-theme" onclick="toggleTheme()">Toggle Theme</button>
+
+<div class="profile">
+  <img src="m1.jpeg" alt="Miyanda Profile">
+</div>
+
+<div class="search-bar">
+  <input type="text" id="searchInput" onkeyup="searchProduct()" placeholder="Search for products...">
+</div>
+
+<div class="news-ticker"><span>✨ New arrivals every week | Discounts on selected items | Contact us for bulk orders! ✨</span></div>
+
+<!-- Example Product Section -->
+<section class="product-grid">
+  <div class="product"><img src="Wigs.jpg" alt="Wig 1" onclick="openModal(this.src)"><div class="price">K350</div></div>
+  <div class="product"><img src="dresses.jpg" alt="Dress 1" onclick="openModal(this.src)"><div class="price">K280</div></div>
+  <div class="product"><img src="phones.jpg" alt="Phone 1" onclick="openModal(this.src)"><div class="price">K2200</div></div>
+  <div class="product"><img src="shoes.jpg" alt="Shoe 1" onclick="openModal(this.src)"><div class="price">K450</div></div>
+  <div class="product"><img src="ad.jpeg" alt="Wig 2" onclick="openModal(this.src)"><div class="price">K370</div></div>
+  <div class="product"><img src="nails.jpg" alt="Skirt 1" onclick="openModal(this.src)"><div class="price">K190</div></div>
+  <div class="product"><img src="games.jpg" alt="Dress 2" onclick="openModal(this.src)"><div class="price">K310</div></div>
+  <div class="product"><img src="hair.jpg" alt="Phone 2" onclick="openModal(this.src)"><div class="price">K2500</div></div>
+</section>
+
+<div class="about" id="about">
+  <h2>About Miyanda</h2>
+  <p>Miyanda is a passionate Zambian content creator selling fashion & tech including wigs, dresses, skirts, phones, shoes, and more!</p>
+</div>
+
+<div class="social-icons">
+  <a href="https://facebook.com/miyanda" target="_blank"><i class="fab fa-facebook"></i></a>
+  <a href="https://instagram.com/miyanda" target="_blank"><i class="fab fa-instagram"></i></a>
+  <a href="https://wa.me/260970000000" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  <a href="mailto:miyanda@example.com"><i class="fas fa-envelope"></i></a>
+</div>
+
+<div class="map">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15685.792986761843!2d28.30721041642944!3d-15.387525254279942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19408c0ba6f2c4e1%3A0xf3d2e18d6d350e0a!2sLusaka%2C%20Zambia!5e0!3m2!1sen!2szm!4v1615377287593!5m2!1sen!2szm" width="90%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</div>
+
+<div class="extra-contact">
+  <button onclick="location.href='mailto:miyanda@example.com'">Send via Email</button>
+  <button onclick="location.href='https://wa.me/260970000000'">Send on WhatsApp</button>
+</div>
+
+<div class="about" id="bio">
+  <h2>Bio</h2>
+  <p>Miyanda started her journey as a content creator in Zambia, using her creativity to explore fashion and tech. She believes in empowering others through digital platforms and offers a wide variety of affordable items for every customer.</p>
+</div>
+
+<div class="about" id="policy">
+  <h2>Policy</h2>
+  <p>All purchases are final. We only offer refunds or exchanges on faulty products returned within 7 days of delivery. Customer satisfaction is our top priority. For any issues, contact us via WhatsApp or email immediately.</p>
+</div>
+
+<footer>
+  &copy; 2025 Miyanda | Designed by Sande Tech Solutions
+</footer>
+
+<a href="tel:+260970000000" class="call-button">
+  <i class="fas fa-phone"></i>
+</a>
+
+<script>
+  function toggleTheme() {
+    document.body.classList.toggle("dark");
+  }
+
+  function searchProduct() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const products = document.querySelectorAll(".product");
+    products.forEach(product => {
+      const name = product.getAttribute("data-name").toLowerCase();
+      product.style.display = name.includes(input) ? "block" : "none";
+    });
+  }
+
+  function navigate(select) {
+    const value = select.value;
+    if (value) {
+      const target = document.getElementById(value);
+      if (target) target.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+</script>
+
+</body>
+</html>
